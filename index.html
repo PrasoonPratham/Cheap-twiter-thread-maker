@@ -1,109 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <title>Big Brain Twitter growth haccs</title>
-</head>
-<body>
-    
-<!-- component -->
-<div>
-    <form class="m-4 flex justify-center" onsubmit="bigbrain()"  id="bigbrenn" method="GET">
-      <input class="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white" placeholder=" 'Free Python resources' " id='search'/>
-      <button class="px-8 rounded-r-lg bg-yellow-400  text-gray-800 font-bold p-4 uppercase border-yellow-500 border-t border-b border-r" type="submit">Search</button>
-    </form>
-</div>
-
-<div id='content'></div>
-<div class="py-4 bg-gray-200 flex justify-center items-center" id='${i}'>
-  <!-- Start of component -->
-  <div class="max-w-lg bg-white border-2 border-gray-300 p-10 rounded-md tracking-wide shadow-lg" '>
-
-    <div >
-       <q class="text-gray-600 break-words" id="lulz">    
-Hi 👋 if you are interested in:
-<br><br>
-🐍 Python <br>
-🪄 Data Science<br>
-🤖 Artificial Intelligence<br>
-<br>
-Follow me. ✔
-<br><br>
-I'm planning on using Twitter to share a lot of content that you won't want to miss. 🎉</q>
-    </div>
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded" onclick="copyToClipboard('lulz')">Copy</button>
- 
-    
- 
-    </div>
- <!-- End of component -->
-</div>
-
-<script>
-// fetch results from localhost:8000 api and then display them
-
-function copyToClipboard(index) {
-  const str = document.getElementById(index).innerText;
-  const el = document.createElement('textarea')
-  el.value = str
-  el.setAttribute('readonly', '')
-  el.style.position = 'absolute'
-  el.style.left = '-9999px'
-  document.body.appendChild(el)
-  el.select()
-  document.execCommand('copy')
-  document.body.removeChild(el)
-  document.execCommand('copy')
-}
-
-  function bigbrain(){
-
-    const search =document.getElementById("search").value
-    const mainContainer = document.getElementById("content");
-
-    mainContainer.innerHTML = '';
-    console.log(search)
-    fetch(`http://localhost:8000/${search}`)
-        .then(response => response.json())
-        .then(data => {
-        console.log(data);
-        // display results
-
-        for (let i = 0; i < data.length; i++) {
-            console.log(data[i].title, data[i].link, data[i].text) 
-            mainContainer.appendChild(document.createElement('h1')).innerHTML = `
-            <div class="py-4 bg-gray-200 flex justify-center items-center" id='${i}'>
-   <!-- Start of component -->
-   <div class="max-w-lg bg-white border-2 border-gray-300 p-10 rounded-md tracking-wide shadow-lg" '>
-      <div id="header" class="flex items-center mb-4"> 
-         <div id="header-text" class="leading-5  sm">
-            <h4 id="name" class="text-xl font-semibold break-words">${i+1}. ${data[i].title}</h4><br>
-            <h5 id="job" class="font-semibold text-blue-600 break-all">🔗 ${data[i].link}</h5><br>
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+      <title>Big Brain Twitter growth haccs</title>
+   </head>
+   <body>
+      <!-- component -->
+      <div>
+         <form class="m-4 flex justify-center" onsubmit="bigbrain()"  id="bigbrenn" method="GET">
+            <input class="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white" placeholder=" 'Free Python resources' " id='search'/>
+            <button class="px-8 rounded-r-lg bg-yellow-400  text-gray-800 font-bold p-4 uppercase border-yellow-500 border-t border-b border-r" type="submit">Search</button>
+         </form>
+      </div>
+      <div id='content'></div>
+      <div class="py-4 bg-gray-200 flex justify-center items-center" id='${i}'>
+         <!-- Start of component -->
+         <div class="max-w-lg bg-white border-2 border-gray-300 p-10 rounded-md tracking-wide shadow-lg" '>
+            <div >
+               <q class="text-gray-600 break-words" id="lulz">    
+               Hi 👋 if you are interested in:
+               <br><br>
+               🐍 Python <br>
+               🪄 Data Science<br>
+               🤖 Artificial Intelligence<br>
+               <br>
+               Follow me. ✔
+               <br><br>
+               I'm planning on using Twitter to share a lot of content that you won't want to miss. 🎉</q>
+            </div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded" onclick="copyToClipboard('lulz')">Copy</button>
          </div>
+         <!-- End of component -->
       </div>
-      <div >
-         <q class="text-gray-600 break-words">📑${data[i].text}</q>
-      </div>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded" onclick="copyToClipboard(${i})">Copy</button>
-   
-      
-   
-      </div>
-   <!-- End of component -->
-   
-</div>
-            `; 
+      <script>
+         // fetch results from localhost:8000 api and then display them
+         
+         function copyToClipboard(index) {
+           const str = document.getElementById(index).innerText;
+           const el = document.createElement('textarea')
+           el.value = str
+           el.setAttribute('readonly', '')
+           el.style.position = 'absolute'
+           el.style.left = '-9999px'
+           document.body.appendChild(el)
+           el.select()
+           document.execCommand('copy')
+           document.body.removeChild(el)
+           document.execCommand('copy')
+         }
+         
+           function bigbrain(){
+         
+             const search =document.getElementById("search").value
+             const mainContainer = document.getElementById("content");
+         
+             mainContainer.innerHTML = '';
+             console.log(search)
+             fetch(`http://localhost:8000/${search}`)
+                 .then(response => response.json())
+                 .then(data => {
+                 console.log(data);
+                 // display results
+         
+                 for (let i = 0; i < data.length; i++) {
+                     console.log(data[i].title, data[i].link, data[i].text) 
+                     mainContainer.appendChild(document.createElement('h1')).innerHTML = `
+                     <div class="py-4 bg-gray-200 flex justify-center items-center" id='${i}'>
+            <!-- Start of component -->
+            <div class="max-w-lg bg-white border-2 border-gray-300 p-10 rounded-md tracking-wide shadow-lg" '>
+               <div id="header" class="flex items-center mb-4"> 
+                  <div id="header-text" class="leading-5  sm">
+                     <h4 id="name" class="text-xl font-semibold break-words">${i+1}. ${data[i].title}</h4><br>
+                     <h5 id="job" class="font-semibold text-blue-600 break-all">🔗 ${data[i].link}</h5><br>
+                  </div>
+               </div>
+               <div >
+                  <q class="text-gray-600 break-words">📑${data[i].text}</q>
+               </div>
+               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded" onclick="copyToClipboard(${i})">Copy</button>
             
-
-        }
-
-
-    });
-  }
-</script>
-
-</body>
+               
+            
+               </div>
+            <!-- End of component -->
+            
+         </div>
+                     `; 
+                     
+         
+                 }
+         
+         
+             });
+           }
+      </script>
+   </body>
 </html>
