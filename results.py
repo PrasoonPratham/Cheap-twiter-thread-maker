@@ -1,30 +1,16 @@
-# This code taken from https://practicaldatascience.co.uk/data-science/how-to-scrape-google-search-results-using-python
-# Sorry I'm lazy xD
-
 import requests
 import urllib
-import pandas as pd
-from requests_html import HTML
 from requests_html import HTMLSession
 
 
 def get_source(url):
-    """Return the source code for the provided URL.
-
-    Args:
-        url (string): URL of the page to scrape.
-
-    Returns:
-        response (object): HTTP response object from requests_html.
-    """
-
     try:
         session = HTMLSession()
         response = session.get(url)
         return response
 
-    except requests.exceptions.RequestException as e:
-        print(e)
+    except:
+        pass
 
 
 def get_results(query):
@@ -87,7 +73,19 @@ def google_search(query):
     return parse_results(response)
 
 
-print(google_search("JavaScript free learning"))
+# def format(results):
+#     results = google_search(results)
+#     for r in results:
+#         print(r["title"])
+#         print(r["link"])
+#         print(r["text"])
+#         print("\n")
+
+# format("JavaScript learning free")
+
+# Testing it out
+
+# print(google_search("JavaScript free learning"))
 
 # [
 #     {
