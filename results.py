@@ -1,4 +1,6 @@
-import requests
+# This code taken from https://practicaldatascience.co.uk/data-science/how-to-scrape-google-search-results-using-python
+# Sorry I'm lazy xD
+
 import urllib
 from requests_html import HTMLSession
 
